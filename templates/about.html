@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+    <h1>About</h1>
+    <p>The CorgiValidator was an ambitious project created by those afflicted with significant others obssessed with Corgis. We call this, <b>Corgitis</b>.</p>
+    <p>You are {% if not current_user.is_authenticated %}not {% endif %}logged in.</p>
+{% endblock %}
