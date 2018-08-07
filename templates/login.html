@@ -2,9 +2,12 @@
 {% import "bootstrap/wtf.html" as wtf %}
 
 {% block page_content %}
-    <h1>Login</h1>
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="text-center">
+            <img class="rounded" src="{{ url_for('static', filename='images/login.gif') }}" height="225">
+            </div>
+            <h1>Login</h1>
             {{ wtf.quick_form(form) }}
         </div>
     </div>

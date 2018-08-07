@@ -9,7 +9,7 @@ from flask_login import LoginManager, UserMixin, login_user, logout_user, \
     login_required, current_user
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'top secret!'
+app.config['SECRET_KEY'] = 'w|;$Aonru00;8A3y02+&{#oO'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.sqlite3'
 bootstrap = Bootstrap(app)
 db = SQLAlchemy(app)
@@ -32,7 +32,6 @@ class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(16), index=True, unique=True)
     password_hash = db.Column(db.String(128))
-    #cert = db.Column(db.Integer)
     cert = db.Column(db.String(128))
 
     def set_password(self, password):
@@ -66,7 +65,6 @@ def login():
         if user is None or not user.verify_password(form.password.data):
             return redirect(url_for('login', **request.args))
         login_user(user, form.remember_me.data)
-        g.user = current_user
         return redirect(request.args.get('next') or url_for('index'))
     return render_template('login.html', form=form)
 
