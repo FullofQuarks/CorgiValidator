@@ -1,5 +1,5 @@
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask import Flask, render_template, redirect, url_for, request, g
+from flask import Flask, flash, render_template, redirect, url_for, request
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
@@ -32,7 +32,8 @@ class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(16), index=True, unique=True)
     password_hash = db.Column(db.String(128))
-    cert = db.Column(db.Integer)
+    #cert = db.Column(db.Integer)
+    cert = db.Column(db.String(128))
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -81,19 +82,26 @@ def logout():
 def index():
     return render_template('index.html')
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
 
 @app.route('/protected', methods=['GET', 'POST'])
 @login_required
 def protected():
     form = CorgiForm()
     user = ""
+    valid = 0
     if form.validate_on_submit():
-        user = current_user.username
-    return render_template('protected.html', form=form, user=user)
+        if current_user.cert == form.certificate.data:
+            valid = 1
+            flash("Correct!")
+            flash("Thanks for using!")
+    return render_template('protected.html', form=form, valid=valid)
 
 
 if __name__ == '__main__':
     db.create_all()
     if User.query.filter_by(username='monica').first() is None:
-        User.register('monica', 'corgi', 456)
+        User.register('monica', 'corgi', '456')
     app.run(debug=True)

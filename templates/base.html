@@ -1,19 +1,24 @@
 {% extends "bootstrap/base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
-
-{% block title %}Corgi Certificate Validator{% endblock %}
-
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+{% endblock %}
+{% block title %}Corgi Validator{% endblock %}
 {% block navbar %}
-    <nav class="navbar navbar-inverse" role="navigation">
+    <nav class="navbar navbar-light" style="background-color: #e3f2fd;" role="navigation">
         <div class="container">
             <a class="navbar-brand" href="{{ url_for('index') }}">
-                Login Example
+                CorgiValidator 2000
             </a>
             <ul class="nav navbar-nav">
                 <li><a href="{{ url_for('index') }}">Home</a></li>
-                <li><a href="{{ url_for('protected') }}">Protected</a></li>
-            </ul>>
+                <li><a href="{{ url_for('protected') }}">Validation</a></li>
+            </ul>
             <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="{{ url_for('about') }}">About</a>
+                </li>
                 <li>
                     {% if current_user.is_authenticated %}
                         <a href="{{ url_for('logout') }}">Logout</a>
