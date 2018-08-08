@@ -1,15 +1,6 @@
 {% extends "base.html" %}
 
 {% block page_content %}
-{% with messages = get_flashed_messages() %}
-    {% if messages %}
-        <ul class=flashes>
-            {% for message in messages %}
-                <li>{{ message }} </li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-{% endwith %}
     <p>You are logged in as <b>{{ current_user.username }}</b>.</p>
     <div class="row justify-content-center">
         <h1>Certificate Validation</h1></div>
