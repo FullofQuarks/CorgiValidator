@@ -24,12 +24,13 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Submit')
 
 class CorgiForm(FlaskForm):
-    certificate = StringField('Certificate Number', validators=[Required(), Length(1,8)])
+    certificate = StringField('Certificate Number', validators=[Required()])
     submit = SubmitField('Submit')
 
-    #def validate_certificate(form, field):
-     #   if len(field.data) != 8:
-      #      raise ValidationError('Certificate must be exactly 8 digits long.')
+    def validate_certificate(form, field):
+        if len(field.data) != 8:
+            raise ValidationError('Certificate must be exactly 8 digits long.')
+            flash('invalid')
 
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
