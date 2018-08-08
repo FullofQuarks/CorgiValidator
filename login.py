@@ -3,7 +3,7 @@ from flask import Flask, flash, render_template, redirect, url_for, request
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
-from wtforms.validators import Required, Length
+from wtforms.validators import Required, Length, ValidationError
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, logout_user, \
     login_required, current_user
@@ -24,8 +24,12 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Submit')
 
 class CorgiForm(FlaskForm):
-    certificate = StringField('Certificate Number', validators=[Required()])
+    certificate = StringField('Certificate Number', validators=[Required(), Length(1,8)])
     submit = SubmitField('Submit')
+
+    #def validate_certificate(form, field):
+     #   if len(field.data) != 8:
+      #      raise ValidationError('Certificate must be exactly 8 digits long.')
 
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
@@ -65,7 +69,7 @@ def login():
         if user is None or not user.verify_password(form.password.data):
             return redirect(url_for('login', **request.args))
         login_user(user, form.remember_me.data)
-        return redirect(request.args.get('next') or url_for('index'))
+        return redirect(request.args.get('next') or url_for('protected'))
     return render_template('login.html', form=form)
 
 
@@ -101,5 +105,5 @@ def protected():
 if __name__ == '__main__':
     db.create_all()
     if User.query.filter_by(username='monica').first() is None:
-        User.register('monica', 'corgi', '456')
+        User.register('monica', 'corgi', '12345678')
     app.run(debug=True)
