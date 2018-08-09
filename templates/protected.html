@@ -4,12 +4,22 @@
     <p>You are logged in as <b>{{ current_user.username }}</b>.</p>
     <div class="row justify-content-center">
         <h1>Certificate Validation</h1></div>
+    {% if current_user.logged == 0 %}
     <div class="row justify-content-center">
         <div class="col-md-6">
             {{ wtf.quick_form(form) }}
         </div>
-        {% if valid %}
-            <p>Thanks {{ current_user.username }}!</p>
-        {% endif %}
     </div>
+    {% else %}
+    <h2 style="text-align: center;">Your certificate has been authenticated!</h2>
+    <div role="main" class="container">
+        <div class="row">
+            <div class="col-md-8 blog-main">
+                <h2 class="blog-post-title">Validation</h2>
+                <p class="blog-post-meta">Thank you for verifying your certificate with CorgiValidator 2000!<p>
+                <p>This certificate certifies that upon the completion of the following Corgi tasks, a Corgi shall be delivered to the Certificate holder, <strong>{{ current_user.username }}</strong>. 
+            </div>
+        </div>
+    </div>
+    {% endif %}
 {% endblock %}
