@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+</br>
+    <div class="jumbotron">
+        <div class="container">
+          <h1 class="display-3">About</h1>
+          <p>The CorgiValidator 2000 was an ambitious project created by those afflicted with significant others obssessed with Corgis. Some call this "Obssessive Corgi Disorder". We call this, <b>Corgitis</b>. 3 of the main <strong>Corgitis</strong> symptoms are highlighted below.</p>
+        </div>
+      </div>
+
+        <!-- START THE FEATURETTES -->
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+          <div class="col-md-7">
+            <h2 class="featurette-heading">Shares Corgi Videos on Facebook <span class="text-muted">all the time</span></h2>
+            <p class="lead">Those affected by a loved one's <strong>Corgitis</strong> know the pain with notification saturation, a condition that describes when all 11 pop ups are because of yet another video shared. Of the same. Corgi.</p>
+          </div>
+          <div class="col-md-5">
+              <img class="featurette-image img-fluid mx-auto" src="{{ url_for('static', filename='images/featurette1.jpeg') }}" alt="Generic placeholder image">
+          </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+          <div class="col-md-7 order-md-2">
+              <h2 class="featurette-heading">Pretends to show unrelated picture <span class="text-muted">but it's a Corgi</span></h2>
+            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+          </div>
+          <div class="col-md-5 order-md-1">
+              <img class="featurette-image img-fluid mx-auto" src="{{ url_for('static', filename='images/featurette2.jpg') }}" alt="Generic placeholder image">
+          </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+          <div class="col-md-7">
+              <h2 class="featurette-heading">Corgi Butts <span class="text-muted">relentless fluffiness.</span></h2>
+            <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+          </div>
+          <div class="col-md-5">
+              <img class="featurette-image img-fluid mx-auto" src="{{ url_for('static', filename='images/temp.gif') }}" alt="Generic placeholder image">
+          </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <!-- /END THE FEATURETTES -->
+{% endblock %}
