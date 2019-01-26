@@ -9,6 +9,7 @@ from flask_login import LoginManager, UserMixin, login_user, logout_user, \
     login_required, current_user
 
 app = Flask(__name__)
+# Replace the following secret key with your own!!
 app.config['SECRET_KEY'] = 'w|;$Aonru00;8A3y02+&{#oO'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.sqlite3'
 bootstrap = Bootstrap(app)
@@ -132,6 +133,6 @@ def protected():
 
 if __name__ == '__main__':
     db.create_all()
-    if User.query.filter_by(username='monica').first() is None:
-        User.register('monica', 'corgi', '12345678')
+    if User.query.filter_by(username='user').first() is None:
+        User.register('user', 'corgi', '12345678')
     app.run(debug=True)
