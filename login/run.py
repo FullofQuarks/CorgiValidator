@@ -10,6 +10,6 @@ if __name__ == '__main__':
     with app.app_context():
         db.create_all()
         if app.config['DEBUG'] and \
-                User.query.filter_by(username='monica').first() is None:
-                    User.register('monica', 'corgi', '12345')
+                User.query.filter_by(username='user').first() is None:
+                    User.register('user', 'corgi', '12345')
     app.run()
